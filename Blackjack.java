@@ -9,6 +9,20 @@ public class Blackjack {
         System.out.println("Do you have a knack for Black Jack?");
         System.out.println("We shall see..");
         System.out.println("..Ready? Press anything to begin!");
+        scan.nextLine();
+
+        int randomCard1 = drawRandomCard();
+        int randomCard2 = drawRandomCard();
+        int sum = Math.min(randomCard1, 10) + Math.min(randomCard2, 10);
+
+        System.out.println("\n You get a \n" + cardString(randomCard1) + "\n and a \n" + cardString(randomCard2));
+
+        System.out.println("Your total is: "+sum);
+
+        int randomCard3 = drawRandomCard();
+        int randomCard4 = drawRandomCard();
+        System.out.println("The dealer shows \n" + cardString(randomCard3) + "\nand has a card facing down \n" + faceDown());
+        System.out.println("The dealer's total is hidden");
 
         scan.close();
 
