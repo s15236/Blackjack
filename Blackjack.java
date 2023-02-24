@@ -10,22 +10,163 @@ public class Blackjack {
         System.out.println("We shall see..");
         System.out.println("..Ready? Press anything to begin!");
 
-         scan.close();
+        scan.close();
 
     }
 
+    /**
+     * Function name – drawRandomCard
+     *
+     * @return (int)
+     * <p>
+     * Inside the function:
+     * 1. Gets a random number between 1 and 13.
+     * 2. Returns a card.
+     */
+    public static int drawRandomCard() {
+        double card = (Math.random() * 13) + 1;
+        return (int) card;
+    }
 
+    /**
+     * Function name – cardString
+     *
+     * @param cardNumber (int)
+     * @return (String)
+     * <p>
+     * Inside the function:
+     * 1. Returns a String drawing of the card.
+     */
+    public static String cardString(int cardNumber) {
+        return switch (cardNumber) {
+            case 1 -> """
+                       _____
+                      |A _  |
+                      | ( ) |
+                      |(_'_)|
+                      |  |  |
+                      |____V|
+                    """;
+            case 2 -> """
+                       _____
+                      |2    |
+                      |  o  |
+                      |     |
+                      |  o  |
+                      |____Z|
+                    """;
+            case 3 -> """
+                       _____
+                      |3    |
+                      | o o |
+                      |     |
+                      |  o  |
+                      |____E|
+                    """;
+            case 4 -> """
+                       _____
+                      |4    |
+                      | o o |
+                      |     |
+                      | o o |
+                      |____h|
+                    """;
+            case 5 -> """
+                       _____\s
+                      |5    |
+                      | o o |
+                      |  o  |
+                      | o o |
+                      |____S|
+                    """;
+            case 6 -> """
+                       _____\s
+                      |6    |
+                      | o o |
+                      | o o |
+                      | o o |
+                      |____6|
+                    """;
+            case 7 -> """
+                       _____\s
+                      |7    |
+                      | o o |
+                      |o o o|
+                      | o o |
+                      |____7|
+                    """;
+            case 8 -> """
+                       _____\s
+                      |8    |
+                      |o o o|
+                      | o o |
+                      |o o o|
+                      |____8|
+                    """;
+            case 9 -> """
+                       _____\s
+                      |9    |
+                      |o o o|
+                      |o o o|
+                      |o o o|
+                      |____9|
+                    """;
+            case 10 -> """
+                       _____\s
+                      |10  o|
+                      |o o o|
+                      |o o o|
+                      |o o o|
+                      |___10|
+                    """;
+            case 11 -> """
+                       _____
+                      |J  ww|
+                      | o {)|
+                      |o o% |
+                      | | % |
+                      |__%%[|
+                    """;
+            case 12 -> """
+                       _____
+                      |Q  ww|
+                      | o {(|
+                      |o o%%|
+                      | |%%%|
+                      |_%%%O|
+                    """;
+            case 13 -> """
+                       _____
+                      |K  WW|
+                      | o {)|
+                      |o o%%|
+                      | |%%%|
+                      |_%%%>|
+                    """;
+            default -> "ERROR";
+        };
+    }
 
+    /**
+     * Function name – faceDown
+     *
+     * @return (String)
+     * <p>
+     * Inside the function:
+     * 1. Returns a String drawing of the card faced down.
+     */
     public static String faceDown() {
         return
-        "   _____\n"+
-        "  |     |\n"+ 
-        "  |  J  |\n"+
-        "  | JJJ |\n"+
-        "  |  J  |\n"+
-        "  |_____|\n";
+                """
+                           _____
+                          |     |
+                          |  J  |
+                          | JJJ |
+                          |  J  |
+                          |_____|
+                        """;
     }
-    
 
-    }
+
+}
 
