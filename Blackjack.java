@@ -11,21 +11,61 @@ public class Blackjack {
         System.out.println("..Ready? Press anything to begin!");
         scan.nextLine();
 
-        int randomCard1 = drawRandomCard();
-        int randomCard2 = drawRandomCard();
-        int sum = Math.min(randomCard1, 10) + Math.min(randomCard2, 10);
+        int playersCard1 = drawRandomCard();
+        int playersCard2 = drawRandomCard();
+        int playerSum = Math.min(playersCard1, 10) + Math.min(playersCard2, 10);
 
-        System.out.println("\n You get a \n" + cardString(randomCard1) + "\n and a \n" + cardString(randomCard2));
+        System.out.println("\n You get a \n" + cardString(playersCard1) + "\n and a \n" + cardString(playersCard2));
 
-        System.out.println("Your total is: "+sum);
+        System.out.println("Your total is: " + playerSum);
 
-        int randomCard3 = drawRandomCard();
-        int randomCard4 = drawRandomCard();
-        System.out.println("The dealer shows \n" + cardString(randomCard3) + "\nand has a card facing down \n" + faceDown());
+        int dealersCard1 = drawRandomCard();
+        int dealersCard2 = drawRandomCard();
+        int dealerSum = Math.min(dealersCard1, 10) + Math.min(dealersCard2, 10);
+        System.out.println("The dealer shows \n" + cardString(dealersCard1) + "\nand has a card facing down \n" + faceDown());
         System.out.println("The dealer's total is hidden");
 
-        scan.close();
+        while (true) {
+            String hitOrStay = hitOrStay();
 
+            if (hitOrStay.equals("stay")) break;
+
+            int newCard = drawRandomCard();
+            playerSum += Math.min(newCard, 10);
+            System.out.println("You get a\n" + cardString(newCard));
+            System.out.println("\nYour new total is: " + playerSum);
+
+            if (playerSum > 21) {
+                System.out.println("\nBust! Player loses.");
+                System.exit(0);
+            }
+        }
+
+        System.out.println("\nDealer's turn");
+        System.out.println("The dealer's cards are\n" + cardString(playersCard2) + "\nand a\n" + cardString(dealersCard2));
+
+        while (dealerSum < 17) {
+            int newCard = drawRandomCard();
+            dealerSum += Math.min(newCard, 10);
+            System.out.println("\nDealer gets a\n" + cardString(newCard));
+            System.out.println("\nDealer's total is " + dealerSum);
+            if (dealerSum >= 17) {
+                System.out.println("\nEnd of dealer's turn.");
+                break;
+            }
+        }
+
+        if (dealerSum > 21) {
+            System.out.println("\nBust! Dealer loses");
+            System.exit(0);
+        }
+
+        if (playerSum > dealerSum) {
+            System.out.println("\nPlayer wins!");
+        } else {
+            System.out.println("\nDealer wins!");
+        }
+        scan.close();
     }
 
     /**
@@ -181,6 +221,25 @@ public class Blackjack {
                         """;
     }
 
-
+    /**
+     * Function name – hitOrStay
+     *
+     * @return (String)
+     * <p>
+     * Inside the function:
+     * 1. Asks the user to hit or stay.
+     * 2. If the user doesn't enter "hit" or "stay", keep asking them to try again by printing:
+     * Please write 'hit' or 'stay'
+     * 3. Returns the user's option
+     */
+    public static String hitOrStay() {
+        System.out.println("Please write 'hit' or 'stay'");
+        String decision = scan.nextLine();
+        while (!decision.equals("hit") && !decision.equals("stay")) {
+            System.out.println("Please try again.");
+            decision = scan.nextLine();
+        }
+        return decision;
+    }
 }
 
